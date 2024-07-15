@@ -59,6 +59,8 @@ class VehicleModelCreate(BaseModel):
                 "mileage": 0.2,
                 "motor_type": "FourWheeler",
                 "v2g_support": True,
+                "v2x_support": True,
+                "v2i_support": True,
                 "features": {
                     "autopilot": True,
                     "heated_seats": True
@@ -81,6 +83,8 @@ class VehicleModelUpdate(BaseModel):
     mileage: Optional[float] = None
     motor_type: Optional[str] = None
     v2g_support: Optional[bool] = None
+    v2x_support: Optional[bool] = None
+    v2i_support: Optional[bool] = None
     features: Optional[Dict[str, Any]] = None
     status: Optional[bool] = None
 
