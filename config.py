@@ -1,8 +1,11 @@
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic_core import core_schema
+from dotenv import load_dotenv
+import os
 
-MONGO_URL = "mongodb+srv://Shreyas:Shreyas123@fasterapi.i2bp8f5.mongodb.net/"
+load_dotenv()
+MONGO_URL = os.getenv('MONGO_URL')
 client = AsyncIOMotorClient(MONGO_URL)
 database = client.AppConfig_db
 
