@@ -1,6 +1,7 @@
 from typing import Literal
 from fastapi import FastAPI, HTTPException, Header, Request, Depends
 from routers import vehicle_brand,vehicle_model,amenities,ev_error_codes, connector
+import json
 
 app = FastAPI()
 
@@ -13,7 +14,10 @@ resource_routers = {
 }
 
 async def get_body(request: Request):
-    return await request.json()
+    try:
+        return await request.json()
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid JSON: {str(e)}")
 
 @app.api_route("/v1/resources", methods=["GET", "POST"])
 @app.api_route("/v1/resources/{item_id}", methods=["GET", "PUT", "DELETE", "PATCH"])
